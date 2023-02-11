@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        #smulan {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img id="smulan" src="smulan4.jpg" alt="The Smula">
+    <ul>
+        <li id="x"></li>
+        <li id="y"></li>
+    </ul>
+    <script>
+        let smulan = document.querySelector("#smulan");
+        let body = document.querySelector("body");
+        let x = document.querySelector("#x");
+        let y = document.querySelector("#y");
+        body.addEventListener("mousemove", function (event) {
+            smulan.style.left = event.clientX + "px";
+            smulan.style.top = event.clientY + "px";
+            x.textContent = event.clientX;
+            y.textContent = event.clientY;
+        });
+        body.addEventListener("click", function (event) {
+            console.log("click")
+            smulan.classList.toggle("spin");
+            setTimeout(() => {
+                console.log('timeout')
+                smulan.classList.toggle("spin");
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
